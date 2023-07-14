@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutnote"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_12sdp"
+    android:layout_marginTop="@dimen/_12sdp"
+    android:background="@drawable/background_notes">
+
+    <TextView
+        android:id="@+id/textTtile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/bold"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_13sdp"/>
+
+    <TextView
+        android:id="@+id/textsubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:fontFamily="@font/regular"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorNoteSubtitleText"
+        android:textSize="@dimen/_12sdp"/>
+
+    <TextView
+        android:id="@+id/textDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fontFamily="@font/regular"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorNoteSubtitleText"
+        android:textSize="@dimen/_7sdp"/>
+
+
+
+
+
+
+</LinearLayout>
