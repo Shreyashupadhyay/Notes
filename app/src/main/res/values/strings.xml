@@ -12,4 +12,6 @@
     <string name="amp_label_user_id">USER ID</string>
     <string name="amp_label_user_info">User Information</string>
     <string name="miscellaneous">miscellaneous</string>
+    <string name="pick_color">pick_color</string>
+    <string name="add_image">add image</string>
 </resources>
