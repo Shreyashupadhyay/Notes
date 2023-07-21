@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.notes.R;
 import com.example.notes.entities.Notes;
+import com.example.notes.listeners.Noteslistener;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
@@ -22,22 +23,35 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
 
-    private List<Notes> notes;
+    private final List<Notes> notes;
+    private Noteslistener noteslistener;
 
-    public NotesAdapter(List<Notes> notes) {
+
+    public NotesAdapter(List<Notes> notes , Noteslistener noteslistener) {
         this.notes = notes;
+        this.noteslistener = noteslistener;
     }
 
     @NonNull
     @Override
     public NoteViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        return new NoteViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_notes,parent,false)
+        return new NoteViewHolder(
+                LayoutInflater.from(parent.getContext()).inflate(
+                        R.layout.item_container_notes,
+                        parent,
+                        false)
         );
     }
 
     @Override
     public void onBindViewHolder( NoteViewHolder holder, int position) {
         holder.setNote(notes.get(position));
+        holder.layoutNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noteslistener.onNoteClick(notes.get(position) , position);
+            }
+        });
 
     }
 
@@ -65,7 +79,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             textSubtitle =itemView.findViewById(R.id.textsubtitle);
             textDateTime = itemView.findViewById(R.id.textdateTime);
             layoutNote = itemView.findViewById(R.id.layoutnote);
-            imageNote = itemView.findViewById(R.id.imageNotess);
+            imageNote = itemView.findViewById(R.id.imageNote);
         }
         void setNote(Notes notes){
             textTitle.setText(notes.getTitle());

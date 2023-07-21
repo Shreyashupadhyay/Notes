@@ -55,6 +55,10 @@ public class Notesedit extends AppCompatActivity {
 
     private static final int REQUEST_CODE_SELECT_iMAGE = 2;
 
+    // private AlertDialog dialogAddURL;
+
+    private Notes alreadyAvailiable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +92,29 @@ public class Notesedit extends AppCompatActivity {
         selectedNoteColor = "#333333";
         selectedImagePath = "";
 
+        if(getIntent().getBooleanExtra("isViewOrUpdate", false)){
+            alreadyAvailiable = (Notes) getIntent().getSerializableExtra("note");
+            setViewOrUpdate();
+        }
+
         initmiscellanous();
         setSubtitleIndiactoreColor();
+    }
+
+    private void setViewOrUpdate(){
+        inputNoteTitle.setText(alreadyAvailiable.getTitle());
+        inputNotesSubtitle.setText(alreadyAvailiable.getSubtitle());
+        inputNoteText.setText(alreadyAvailiable.getNoteText());
+        textDateTime.setText(alreadyAvailiable.getDatetime());
+        if(alreadyAvailiable.getImagePath() != null && !alreadyAvailiable.getImagePath().trim().isEmpty()){
+            imageNote.setImageBitmap(BitmapFactory.decodeFile(alreadyAvailiable.getImagePath()));
+            imageNote.setVisibility(View.VISIBLE);
+            selectedImagePath = alreadyAvailiable.getImagePath();
+        }
+//        if(alreadyAvailiable.getWebLink() != null && !alreadyAvailiable.getWebLink().trim().isEmpty()){
+//
+//        }
+
     }
 
     private void saveNote(){
@@ -110,6 +135,10 @@ public class Notesedit extends AppCompatActivity {
         notes.setDatetime(textDateTime.getText().toString());
         notes.setColor(selectedNoteColor);
         notes.setImagePath(selectedImagePath);
+
+        if(alreadyAvailiable != null){
+            notes.setId(alreadyAvailiable.getId());
+        }
 
         @SuppressLint("StaticFieldLeak")
         class SaveNoteTask extends AsyncTask<Void ,Void , Void>{
@@ -211,6 +240,22 @@ public class Notesedit extends AppCompatActivity {
 
             }
         });
+         if(alreadyAvailiable != null && alreadyAvailiable.getColor() != null && !alreadyAvailiable.getColor().trim().isEmpty()){
+             switch ((alreadyAvailiable.getColor())){
+                 case "#FDBE3B":
+                     layoutMiscllanous.findViewById(R.id.viewColor2).performClick();
+                     break;
+                 case "#FF4842":
+                     layoutMiscllanous.findViewById(R.id.viewColor3).performClick();
+                     break;
+                 case "#3A52FC":
+                     layoutMiscllanous.findViewById(R.id.viewColor4).performClick();
+                     break;
+                 case "#000000":
+                     layoutMiscllanous.findViewById(R.id.viewColor5).performClick();
+                     break;
+             }
+         }
          layoutMiscllanous.findViewById(R.id.layoutAddImage).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
